@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="$FLUTTER_BASE_HREF">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>Al Shahriar Mohammad Rafat — Flutter Developer &amp; Software Engineer</title>
+  <meta name="description" content="Professional portfolio of Al Shahriar Mohammad Rafat — Senior Flutter Developer &amp; Software Engineer specializing in mobile, web, AI/ML integration, and clean architecture.">
+  <meta name="keywords" content="Flutter Developer, Software Engineer, Dart Developer, Mobile App Developer, Flutter Web, AI Integration, Bangladesh">
+  <meta name="author" content="Al Shahriar Mohammad Rafat">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ash-dev.vercel.app/">
+  <meta property="og:title" content="Al Shahriar Mohammad Rafat — Flutter Developer &amp; Software Engineer">
+  <meta property="og:description" content="Professional portfolio showcasing Flutter applications, software engineering projects, AI/ML integrations, and modern digital products.">
+  <meta property="og:image" content="https://ash-dev.vercel.app/icons/Icon-512.png">
+
+  <!-- Twitter Card -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://ash-dev.vercel.app/">
+  <meta property="twitter:title" content="Al Shahriar Mohammad Rafat — Flutter Developer &amp; Software Engineer">
+  <meta property="twitter:description" content="Professional portfolio showcasing Flutter applications, software engineering projects, and AI/ML integrations.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Theme color for mobile browsers -->
+  <meta name="theme-color" content="#0A0A0F">
+  
+  <style>
+    /* Loading splash screen */
+    body {
+      margin: 0;
+      background-color: #0A0A0F;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    #loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #0A0A0F;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    #loading.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loading-name {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #7C6EFA, #00D4AA);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 24px;
+      letter-spacing: -1px;
+    }
+
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 2px solid rgba(124, 110, 250, 0.2);
+      border-top-color: #7C6EFA;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading screen -->
+  <div id="loading">
+    <div class="loading-name">Al Shahriar Mohammad Rafat</div>
+    <div class="loading-spinner"></div>
+  </div>
+
+  <script>
+    window.addEventListener('flutter-first-frame', function() {
+      const loading = document.getElementById('loading');
+      if (loading) {
+        loading.classList.add('fade-out');
+        setTimeout(() => {
+          loading.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }, 500);
+      }
+    });
+  </script>
+
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
