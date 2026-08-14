@@ -409,16 +409,20 @@ class _HeroAvatarState extends State<_HeroAvatar>
             ),
 
             // Profile image
-            ClipOval(
+            SizedBox(
+              width: size + 20,
+              height: size + 20,
               child: Image.asset(
                 ProfileConstants.profileImagePath,
-                width: size,
-                height: size,
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
+                alignment: Alignment.bottomCenter,
                 errorBuilder: (_, __, ___) => Container(
                   width: size,
                   height: size,
-                  color: AppColors.darkSurface,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.darkSurface,
+                  ),
                   child: Icon(
                     Icons.person_rounded,
                     size: size * 0.5,
