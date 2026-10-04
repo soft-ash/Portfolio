@@ -61,8 +61,14 @@ class HeroSection extends StatelessWidget {
                 horizontal: isMobile ? AppSpacing.lg : AppSpacing.xxxl,
               ),
               child: isMobile
-                  ? _MobileHero(onViewWork: onViewWork, onContact: onContact, isDark: isDark)
-                  : _DesktopHero(onViewWork: onViewWork, onContact: onContact, isDark: isDark),
+                  ? _MobileHero(
+                      onViewWork: onViewWork,
+                      onContact: onContact,
+                      isDark: isDark)
+                  : _DesktopHero(
+                      onViewWork: onViewWork,
+                      onContact: onContact,
+                      isDark: isDark),
             ),
           ),
 
@@ -200,15 +206,13 @@ class _HeroContent extends StatelessWidget {
               const SizedBox(width: 8),
               Text(
                 'Available for opportunities',
-                style: AppTextStyles.labelMd(isDark: isDark)
-                    .copyWith(color: AppColors.teal, fontWeight: FontWeight.w600),
+                style: AppTextStyles.labelMd(isDark: isDark).copyWith(
+                    color: AppColors.teal, fontWeight: FontWeight.w600),
               ),
             ],
           ),
-        )
-            .animate()
-            .fadeIn(duration: 600.ms)
-            .slideY(begin: 0.3, end: 0, duration: 600.ms, curve: Curves.easeOut),
+        ).animate().fadeIn(duration: 600.ms).slideY(
+            begin: 0.3, end: 0, duration: 600.ms, curve: Curves.easeOut),
 
         const SizedBox(height: AppSpacing.lg),
 
@@ -226,7 +230,8 @@ class _HeroContent extends StatelessWidget {
         const SizedBox(height: AppSpacing.sm),
 
         ShaderMask(
-          shaderCallback: (bounds) => AppColors.accentGradient.createShader(bounds),
+          shaderCallback: (bounds) =>
+              AppColors.accentGradient.createShader(bounds),
           child: Text(
             ProfileConstants.fullName,
             style: AppTextStyles.displayMedium(isDark: true)
@@ -255,7 +260,8 @@ class _HeroContent extends StatelessWidget {
 
         // Bio
         ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: isMobile ? double.infinity : 520),
+          constraints:
+              BoxConstraints(maxWidth: isMobile ? double.infinity : 520),
           child: Text(
             ProfileConstants.bio,
             style: AppTextStyles.bodyLg(isDark: isDark),
@@ -363,7 +369,9 @@ class _HeroAvatarState extends State<_HeroAvatar>
 
   @override
   Widget build(BuildContext context) {
-    final size = widget.isMobile ? 180.0 : 320.0;
+    final size = widget.isMobile ? 190.0 : 280.0;
+    final badgeScale = widget.isMobile ? 0.85 : 1.0;
+    final extraSpace = widget.isMobile ? 110.0 : 150.0;
 
     return AnimatedBuilder(
       animation: _floatAnimation,
@@ -374,119 +382,222 @@ class _HeroAvatarState extends State<_HeroAvatar>
         );
       },
       child: Center(
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            // Outer glow ring
-            Container(
-              width: size + 40,
-              height: size + 40,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: SweepGradient(
-                  colors: [
-                    AppColors.accent.withOpacity(0.3),
-                    AppColors.teal.withOpacity(0.3),
-                    AppColors.accent.withOpacity(0.1),
-                    AppColors.accent.withOpacity(0.3),
+        child: SizedBox(
+          width: size + extraSpace,
+          height: size + extraSpace,
+          child: Stack(
+            clipBehavior: Clip.none,
+            alignment: Alignment.center,
+            children: [
+              // Outer ambient glow aura
+              Container(
+                width: size + 44,
+                height: size + 44,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: RadialGradient(
+                    colors: [
+                      AppColors.accent.withOpacity(0.3),
+                      AppColors.teal.withOpacity(0.15),
+                      Colors.transparent,
+                    ],
+                    stops: const [0.35, 0.7, 1.0],
+                  ),
+                ),
+              ),
+
+              // Animated multi-gradient ring frame
+              Container(
+                width: size + 16,
+                height: size + 16,
+                padding: const EdgeInsets.all(3),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: const SweepGradient(
+                    colors: [
+                      AppColors.accent,
+                      AppColors.teal,
+                      AppColors.sky,
+                      AppColors.rose,
+                      AppColors.accent,
+                    ],
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.accent.withOpacity(0.35),
+                      blurRadius: 24,
+                      spreadRadius: 2,
+                    ),
                   ],
                 ),
-              ),
-            ),
-
-            // Inner background circle
-            Container(
-              width: size + 16,
-              height: size + 16,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.darkSurface,
-                border: Border.all(
-                  color: AppColors.accent.withOpacity(0.3),
-                  width: 1.5,
-                ),
-              ),
-            ),
-
-            // Profile image
-            SizedBox(
-              width: size + 20,
-              height: size + 20,
-              child: Image.asset(
-                ProfileConstants.profileImagePath,
-                fit: BoxFit.contain,
-                alignment: Alignment.bottomCenter,
-                errorBuilder: (_, __, ___) => Container(
-                  width: size,
-                  height: size,
+                child: Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: AppColors.darkSurface,
+                    color: widget.isDark
+                        ? AppColors.darkBackground
+                        : AppColors.lightBackground,
                   ),
-                  child: Icon(
-                    Icons.person_rounded,
-                    size: size * 0.5,
-                    color: AppColors.accent.withOpacity(0.5),
+                  padding: const EdgeInsets.all(3),
+                  child: ClipOval(
+                    child: Container(
+                      width: size,
+                      height: size,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: RadialGradient(
+                          center: const Alignment(0, -0.3),
+                          radius: 0.95,
+                          colors: [
+                            AppColors.accent.withOpacity(0.25),
+                            widget.isDark
+                                ? AppColors.darkSurface
+                                : AppColors.lightSurfaceElevated,
+                            widget.isDark
+                                ? AppColors.darkBackground
+                                : AppColors.lightSurface,
+                          ],
+                        ),
+                      ),
+                      child: Image.asset(
+                        ProfileConstants.profileImagePath,
+                        fit: BoxFit.cover,
+                        alignment: const Alignment(0.0, -0.2),
+                        errorBuilder: (_, __, ___) => Container(
+                          width: size,
+                          height: size,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: widget.isDark
+                                ? AppColors.darkSurface
+                                : AppColors.lightSurface,
+                          ),
+                          child: Icon(
+                            Icons.person_rounded,
+                            size: size * 0.5,
+                            color: AppColors.accent.withOpacity(0.5),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
 
-            // Floating tech badges
-            if (!widget.isMobile) ...[
+              // Floating tech badges: Flutter, Riverpod, GetX, AI/ML
+              // 1. Flutter (Top Right)
               Positioned(
-                top: 20,
-                right: -10,
-                child: _TechBadge(label: 'Flutter', color: AppColors.accent),
+                top: widget.isMobile ? 10 : 16,
+                right: widget.isMobile ? 10 : 16,
+                child: Transform.scale(
+                  scale: badgeScale,
+                  child: const _TechBadge(
+                    label: 'Flutter',
+                    color: AppColors.accent,
+                    icon: Icons.flutter_dash_rounded,
+                  ),
+                ),
               ),
+
+              // 2. Riverpod (Top Left)
               Positioned(
-                bottom: 40,
-                left: -10,
-                child: _TechBadge(label: 'AI / ML', color: AppColors.teal),
+                top: widget.isMobile ? 32 : 44,
+                left: widget.isMobile ? 10 : 16,
+                child: Transform.scale(
+                  scale: badgeScale,
+                  child: const _TechBadge(
+                    label: 'Riverpod',
+                    color: AppColors.sky,
+                    icon: Icons.water_drop_rounded,
+                  ),
+                ),
               ),
+
+              // 3. GetX (Bottom Right)
               Positioned(
-                bottom: 20,
-                right: 20,
-                child: _TechBadge(label: 'GetX', color: AppColors.rose),
+                bottom: widget.isMobile ? 32 : 44,
+                right: widget.isMobile ? 10 : 16,
+                child: Transform.scale(
+                  scale: badgeScale,
+                  child: const _TechBadge(
+                    label: 'GetX',
+                    color: AppColors.rose,
+                    icon: Icons.bolt_rounded,
+                  ),
+                ),
+              ),
+
+              // 4. AI / ML (Bottom Left)
+              Positioned(
+                bottom: widget.isMobile ? 10 : 16,
+                left: widget.isMobile ? 10 : 16,
+                child: Transform.scale(
+                  scale: badgeScale,
+                  child: const _TechBadge(
+                    label: 'AI / ML',
+                    color: AppColors.teal,
+                    icon: Icons.psychology_rounded,
+                  ),
+                ),
               ),
             ],
-          ],
+          ),
         ),
-      )
-          .animate()
-          .fadeIn(duration: 800.ms, delay: 400.ms)
-          .scale(begin: const Offset(0.8, 0.8), end: const Offset(1, 1), duration: 800.ms),
+      ).animate().fadeIn(duration: 800.ms, delay: 400.ms).scale(
+          begin: const Offset(0.8, 0.8),
+          end: const Offset(1, 1),
+          duration: 800.ms),
     );
   }
 }
 
 class _TechBadge extends StatelessWidget {
-  const _TechBadge({required this.label, required this.color});
+  const _TechBadge({
+    required this.label,
+    required this.color,
+    this.icon,
+  });
+
   final String label;
   final Color color;
+  final IconData? icon;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 7),
       decoration: BoxDecoration(
         color: color.withOpacity(0.15),
         borderRadius: BorderRadius.circular(100),
-        border: Border.all(color: color.withOpacity(0.4)),
+        border: Border.all(color: color.withOpacity(0.45), width: 1.2),
         boxShadow: [
           BoxShadow(
-            color: color.withOpacity(0.2),
-            blurRadius: 12,
+            color: color.withOpacity(0.25),
+            blurRadius: 14,
+            spreadRadius: 1,
           ),
         ],
       ),
-      child: Text(
-        label,
-        style: TextStyle(
-          color: color,
-          fontSize: 12,
-          fontWeight: FontWeight.w700,
-        ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (icon != null) ...[
+            Icon(
+              icon,
+              size: 13,
+              color: color,
+            ),
+            const SizedBox(width: 5),
+          ],
+          Text(
+            label,
+            style: TextStyle(
+              color: color,
+              fontSize: 12,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 0.3,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -531,7 +642,9 @@ class _SocialButtonState extends State<_SocialButton> {
                     : AppColors.lightSurface),
             borderRadius: BorderRadius.circular(8),
             border: Border.all(
-              color: _hovered ? AppColors.accent.withOpacity(0.5) : AppColors.darkBorder,
+              color: _hovered
+                  ? AppColors.accent.withOpacity(0.5)
+                  : AppColors.darkBorder,
               width: 1,
             ),
           ),
@@ -541,7 +654,8 @@ class _SocialButtonState extends State<_SocialButton> {
               Icon(
                 widget.icon,
                 size: 16,
-                color: _hovered ? AppColors.accent : AppColors.darkTextSecondary,
+                color:
+                    _hovered ? AppColors.accent : AppColors.darkTextSecondary,
               ),
               const SizedBox(width: 6),
               Text(

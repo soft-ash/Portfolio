@@ -170,7 +170,7 @@ class LocalDataSource {
         
         // State Management (mapped to stateManagement)
         const SkillModel(id: 's-8', name: 'GetX', category: SkillCategory.stateManagement, proficiency: 5),
-        const SkillModel(id: 's-9', name: 'Riverpod', category: SkillCategory.stateManagement, proficiency: 4),
+        const SkillModel(id: 's-9', name: 'Riverpod', category: SkillCategory.stateManagement, proficiency: 5),
         
         // Backend, APIs
         const SkillModel(id: 's-10', name: 'Firebase', category: SkillCategory.backend, proficiency: 5),

@@ -15,7 +15,7 @@ class ProfileConstants {
   // ── Bio ───────────────────────────────────────────────────────────────────
   static const String bio =
       'I am a Flutter App Developer with experience building scalable Android and iOS '
-      'applications using Flutter, Dart, GetX, Firebase, REST APIs, Socket.IO, and WebRTC. Skilled in '
+      'applications using Flutter, Dart, GetX, Riverpod, Firebase, REST APIs, Socket.IO, and WebRTC. Skilled in '
       'developing production-ready applications, optimizing performance, and implementing '
       'clean architecture.';
 
