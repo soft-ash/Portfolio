@@ -32,7 +32,7 @@ class HomeBinding extends Bindings {
     Get.lazyPut<CertificationRepository>(() => LocalCertificationRepository());
     Get.lazyPut<ServiceRepository>(() => LocalServiceRepository());
     Get.lazyPut<BlogRepository>(() => LocalBlogRepository());
-    Get.lazyPut<ContactRepository>(() => LocalContactRepository());
+    Get.lazyPut<ContactRepository>(() => EmailJsContactRepository());
 
     // Controllers
     Get.lazyPut(() => HomeController());

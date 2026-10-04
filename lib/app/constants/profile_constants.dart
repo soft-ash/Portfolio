@@ -26,6 +26,12 @@ class ProfileConstants {
   static const String email = 'morat9511@gmail.com';
   static const String location = 'Dhaka, Bangladesh';
 
+  // ── EmailJS Credentials (Sign up free at https://www.emailjs.com/) ──────────
+  // Replace these with your actual keys from your EmailJS dashboard:
+  static const String emailJsServiceId = 'service_46';
+  static const String emailJsTemplateId = 'template_i5dvwqk';
+  static const String emailJsPublicKey = 'mOMkxKgEd3tNJrm2N';
+
   // ── Social ────────────────────────────────────────────────────────────────
   static const String githubUrl = 'https://github.com/soft-ash';
   static const String linkedinUrl = 'https://www.linkedin.com/in/morat46';

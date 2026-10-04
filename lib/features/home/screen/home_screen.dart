@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../../core/utils/theme_controller.dart';
 import '../../about/screen/about_section.dart';
-import '../../blog/screen/blog_section.dart';
-import '../../certifications/screen/certifications_section.dart';
+// import '../../blog/screen/blog_section.dart';
+// import '../../certifications/screen/certifications_section.dart';
 import '../../contact/screen/contact_section.dart';
 import '../../education/screen/education_section.dart';
 import '../../experience/screen/experience_section.dart';
@@ -82,11 +82,11 @@ class HomeScreen extends StatelessWidget {
                     child: const EducationSection(),
                   ),
 
-                  // Certifications
-                  KeyedSubtree(
-                    key: homeController.certificationsKey,
-                    child: const CertificationsSection(),
-                  ),
+                  // Certifications (Commented out for now)
+                  // KeyedSubtree(
+                  //   key: homeController.certificationsKey,
+                  //   child: const CertificationsSection(),
+                  // ),
 
                   // Services
                   KeyedSubtree(
@@ -94,11 +94,11 @@ class HomeScreen extends StatelessWidget {
                     child: const ServicesSection(),
                   ),
 
-                  // Blog
-                  KeyedSubtree(
-                    key: homeController.blogKey,
-                    child: const BlogSection(),
-                  ),
+                  // Blog (Commented out for now)
+                  // KeyedSubtree(
+                  //   key: homeController.blogKey,
+                  //   child: const BlogSection(),
+                  // ),
 
                   // Contact
                   KeyedSubtree(

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../app/constants/profile_constants.dart';
-import '../../../core/utils/url_launcher_util.dart';
 import '../../../data/models/contact_message_model.dart';
 import '../../../core/repository/contact_repository.dart';
 
@@ -40,16 +38,15 @@ class ContactController extends GetxController {
         sentAt: DateTime.now(),
       );
 
-      await _repository.sendMessage(message);
+      final success = await _repository.sendMessage(message);
 
-      await UrlLauncherUtil.launchEmail(
-        ProfileConstants.email,
-        subject: '[Portfolio] $subject',
-        body: 'From: $name ($senderEmail)\n\n$bodyText',
-      );
-
-      status.value = ContactStatus.success;
-      _clearForm();
+      if (success) {
+        status.value = ContactStatus.success;
+        _clearForm();
+      } else {
+        status.value = ContactStatus.error;
+        errorMessage.value = 'Failed to send message. Please try again.';
+      }
     } catch (e) {
       status.value = ContactStatus.error;
       errorMessage.value = 'Something went wrong. Please try again.';

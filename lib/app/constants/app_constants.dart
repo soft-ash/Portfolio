@@ -54,7 +54,7 @@ class AppConstants {
     {'label': 'Experience', 'section': 2},
     {'label': 'Skills', 'section': 3},
     {'label': 'Projects', 'section': 4},
-    {'label': 'Blog', 'section': 8},
+    // {'label': 'Blog', 'section': 8},
     {'label': 'Contact', 'section': 9},
   ];
 
