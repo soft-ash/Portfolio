@@ -458,23 +458,21 @@ class _HeroAvatarState extends State<_HeroAvatar>
                           ],
                         ),
                       ),
-                      child: Image.asset(
-                        ProfileConstants.profileImagePath,
-                        fit: BoxFit.cover,
-                        alignment: const Alignment(0.0, -0.2),
-                        errorBuilder: (_, __, ___) => Container(
-                          width: size,
-                          height: size,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: widget.isDark
-                                ? AppColors.darkSurface
-                                : AppColors.lightSurface,
-                          ),
-                          child: Icon(
-                            Icons.person_rounded,
-                            size: size * 0.5,
-                            color: AppColors.accent.withOpacity(0.5),
+                      child: Transform.scale(
+                        scale: 1.08,
+                        alignment: Alignment.bottomCenter,
+                        child: Image.asset(
+                          ProfileConstants.profileImagePath,
+                          fit: BoxFit.contain,
+                          alignment: Alignment.bottomCenter,
+                          errorBuilder: (_, __, ___) => Container(
+                            width: size,
+                            height: size,
+                            child: Icon(
+                              Icons.person_rounded,
+                              size: size * 0.5,
+                              color: AppColors.accent.withOpacity(0.5),
+                            ),
                           ),
                         ),
                       ),
