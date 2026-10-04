@@ -136,6 +136,14 @@ class _ContactInfo extends StatelessWidget {
           onTap: () => UrlLauncherUtil.launch(ProfileConstants.linkedinUrl),
           isDark: isDark,
         ),
+        const SizedBox(height: AppSpacing.md),
+        _ContactLink(
+          icon: Icons.chat_bubble_outline_rounded,
+          label: 'Discord',
+          value: ProfileConstants.discordUrl.replaceFirst('https://', ''),
+          onTap: () => UrlLauncherUtil.launch(ProfileConstants.discordUrl),
+          isDark: isDark,
+        ),
       ],
     );
   }

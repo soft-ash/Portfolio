@@ -143,6 +143,13 @@ class _DesktopFooter extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   _FooterLink(
+                    label: 'Discord',
+                    onTap: () => UrlLauncherUtil.launch(ProfileConstants.discordUrl),
+                    isDark: isDark,
+                    icon: Icons.chat_bubble_outline_rounded,
+                  ),
+                  const SizedBox(height: 8),
+                  _FooterLink(
                     label: ProfileConstants.email,
                     onTap: () => UrlLauncherUtil.launchEmail(ProfileConstants.email),
                     isDark: isDark,
@@ -221,11 +228,19 @@ class _MobileFooter extends StatelessWidget {
               onPressed: () => UrlLauncherUtil.launch(ProfileConstants.linkedinUrl),
               icon: const Icon(Icons.work_outline_rounded),
               color: AppColors.darkTextSecondary,
+              tooltip: 'LinkedIn',
+            ),
+            IconButton(
+              onPressed: () => UrlLauncherUtil.launch(ProfileConstants.discordUrl),
+              icon: const Icon(Icons.chat_bubble_outline_rounded),
+              color: AppColors.darkTextSecondary,
+              tooltip: 'Discord',
             ),
             IconButton(
               onPressed: () => UrlLauncherUtil.launchEmail(ProfileConstants.email),
               icon: const Icon(Icons.email_outlined),
               color: AppColors.darkTextSecondary,
+              tooltip: 'Email',
             ),
           ],
         ),

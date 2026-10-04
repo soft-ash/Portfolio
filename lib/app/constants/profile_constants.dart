@@ -27,8 +27,9 @@ class ProfileConstants {
   static const String location = 'Dhaka, Bangladesh';
 
   // ── Social ────────────────────────────────────────────────────────────────
-  static const String githubUrl = 'https://github.com/ash-dev';
-  static const String linkedinUrl = 'https://linkedin.com/in/ash-dev';
+  static const String githubUrl = 'https://github.com/soft-ash';
+  static const String linkedinUrl = 'https://www.linkedin.com/in/morat46';
+  static const String discordUrl = 'https://discord.com/users/1177283306098798603';
   static const String twitterUrl = '';
 
   // ── Resume ────────────────────────────────────────────────────────────────

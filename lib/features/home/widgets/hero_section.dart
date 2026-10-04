@@ -300,9 +300,10 @@ class _HeroContent extends StatelessWidget {
         const SizedBox(height: AppSpacing.xl),
 
         // Social links
-        Row(
-          mainAxisAlignment:
-              isMobile ? MainAxisAlignment.center : MainAxisAlignment.start,
+        Wrap(
+          spacing: AppSpacing.sm,
+          runSpacing: AppSpacing.sm,
+          alignment: isMobile ? WrapAlignment.center : WrapAlignment.start,
           children: [
             _SocialButton(
               icon: Icons.code,
@@ -310,14 +311,18 @@ class _HeroContent extends StatelessWidget {
               url: ProfileConstants.githubUrl,
               isDark: isDark,
             ),
-            const SizedBox(width: AppSpacing.md),
             _SocialButton(
               icon: Icons.work_outline_rounded,
               label: 'LinkedIn',
               url: ProfileConstants.linkedinUrl,
               isDark: isDark,
             ),
-            const SizedBox(width: AppSpacing.md),
+            _SocialButton(
+              icon: Icons.chat_bubble_outline_rounded,
+              label: 'Discord',
+              url: ProfileConstants.discordUrl,
+              isDark: isDark,
+            ),
             _SocialButton(
               icon: Icons.email_outlined,
               label: 'Email',

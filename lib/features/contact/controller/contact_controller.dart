@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../app/constants/profile_constants.dart';
+import '../../../core/utils/url_launcher_util.dart';
 import '../../../data/models/contact_message_model.dart';
 import '../../../core/repository/contact_repository.dart';
 
@@ -25,23 +27,29 @@ class ContactController extends GetxController {
     errorMessage.value = null;
 
     try {
+      final name = nameController.text.trim();
+      final senderEmail = emailController.text.trim();
+      final subject = subjectController.text.trim();
+      final bodyText = messageController.text.trim();
+
       final message = ContactMessageModel(
-        name: nameController.text.trim(),
-        email: emailController.text.trim(),
-        subject: subjectController.text.trim(),
-        message: messageController.text.trim(),
+        name: name,
+        email: senderEmail,
+        subject: subject,
+        message: bodyText,
         sentAt: DateTime.now(),
       );
 
-      final success = await _repository.sendMessage(message);
+      await _repository.sendMessage(message);
 
-      if (success) {
-        status.value = ContactStatus.success;
-        _clearForm();
-      } else {
-        status.value = ContactStatus.error;
-        errorMessage.value = 'Failed to send message. Please try again.';
-      }
+      await UrlLauncherUtil.launchEmail(
+        ProfileConstants.email,
+        subject: '[Portfolio] $subject',
+        body: 'From: $name ($senderEmail)\n\n$bodyText',
+      );
+
+      status.value = ContactStatus.success;
+      _clearForm();
     } catch (e) {
       status.value = ContactStatus.error;
       errorMessage.value = 'Something went wrong. Please try again.';
