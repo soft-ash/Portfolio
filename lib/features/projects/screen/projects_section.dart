@@ -249,50 +249,68 @@ class _ProjectCardState extends State<_ProjectCard> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Project header banner
-              Container(
-                height: widget.featured ? 200 : 140,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                  ),
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      AppColors.accent.withOpacity(0.2),
-                      AppColors.teal.withOpacity(0.15),
-                      AppColors.darkSurface.withOpacity(0.3),
+              // Project header banner / image
+              ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+                child: SizedBox(
+                  height: widget.featured ? 210 : 160,
+                  width: double.infinity,
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      if (widget.project.thumbnailAsset != null)
+                        Image.asset(
+                          widget.project.thumbnailAsset!,
+                          fit: BoxFit.cover,
+                          alignment: Alignment.center,
+                          errorBuilder: (_, __, ___) => _buildFallbackBanner(),
+                        )
+                      else
+                        _buildFallbackBanner(),
+
+                      // Subtle gradient overlay for readability
+                      Positioned.fill(
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                Colors.transparent,
+                                Colors.black.withOpacity(0.4),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      // Year badge
+                      Positioned(
+                        top: 12,
+                        right: 12,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 5),
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.65),
+                            borderRadius: BorderRadius.circular(100),
+                            border: Border.all(
+                                color: AppColors.accent.withOpacity(0.4)),
+                          ),
+                          child: Text(
+                            widget.project.year.toString(),
+                            style: AppTextStyles.labelSm().copyWith(
+                              color: AppColors.accentLight,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
-                ),
-                child: Stack(
-                  children: [
-                    Center(
-                      child: Icon(
-                        Icons.code_rounded,
-                        size: widget.featured ? 64 : 48,
-                        color: AppColors.accent.withOpacity(0.3),
-                      ),
-                    ),
-                    Positioned(
-                      top: 12,
-                      right: 12,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                        decoration: BoxDecoration(
-                          color: AppColors.accent.withOpacity(0.15),
-                          borderRadius: BorderRadius.circular(100),
-                          border: Border.all(color: AppColors.accent.withOpacity(0.3)),
-                        ),
-                        child: Text(
-                          widget.project.year.toString(),
-                          style: AppTextStyles.labelSm().copyWith(color: AppColors.accent),
-                        ),
-                      ),
-                    ),
-                  ],
                 ),
               ),
 
@@ -386,6 +404,29 @@ class _ProjectCardState extends State<_ProjectCard> {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFallbackBanner() {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            AppColors.accent.withOpacity(0.2),
+            AppColors.teal.withOpacity(0.15),
+            AppColors.darkSurface.withOpacity(0.3),
+          ],
+        ),
+      ),
+      child: Center(
+        child: Icon(
+          Icons.code_rounded,
+          size: widget.featured ? 64 : 48,
+          color: AppColors.accent.withOpacity(0.3),
         ),
       ),
     );

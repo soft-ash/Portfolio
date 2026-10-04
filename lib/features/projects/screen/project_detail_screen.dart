@@ -74,42 +74,64 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // Hero banner
-                        Container(
-                          height: isMobile ? 220 : 360,
+                        SizedBox(
+                          height: isMobile ? 240 : 380,
                           width: double.infinity,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                AppColors.accent.withOpacity(0.15),
-                                AppColors.teal.withOpacity(0.1),
-                                isDark
-                                    ? AppColors.darkSurface
-                                    : AppColors.lightSurface,
-                              ],
-                            ),
-                          ),
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.code_rounded,
-                                  size: 72,
-                                  color: AppColors.accent.withOpacity(0.4),
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              if (project.thumbnailAsset != null)
+                                Image.asset(
+                                  project.thumbnailAsset!,
+                                  fit: BoxFit.cover,
+                                  alignment: Alignment.center,
+                                )
+                              else
+                                Container(
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [
+                                        AppColors.accent.withOpacity(0.15),
+                                        AppColors.teal.withOpacity(0.1),
+                                        isDark
+                                            ? AppColors.darkSurface
+                                            : AppColors.lightSurface,
+                                      ],
+                                    ),
+                                  ),
+                                  child: Center(
+                                    child: Icon(
+                                      Icons.code_rounded,
+                                      size: 72,
+                                      color: AppColors.accent.withOpacity(0.4),
+                                    ),
+                                  ),
                                 ),
-                                const SizedBox(height: AppSpacing.md),
-                                Text(
-                                  project.category,
-                                  style: AppTextStyles.captionUppercase(),
+
+                              // Gradient overlay
+                              Positioned.fill(
+                                child: DecoratedBox(
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [
+                                        Colors.black.withOpacity(0.2),
+                                        Colors.transparent,
+                                        isDark
+                                            ? AppColors.darkBackground
+                                            : AppColors.lightBackground,
+                                      ],
+                                      stops: const [0.0, 0.5, 1.0],
+                                    ),
+                                  ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        )
-                            .animate()
-                            .fadeIn(duration: 600.ms),
+                        ).animate().fadeIn(duration: 600.ms),
 
                         Padding(
                           padding: EdgeInsets.symmetric(
