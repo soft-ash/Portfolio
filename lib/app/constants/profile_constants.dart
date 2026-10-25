@@ -40,7 +40,7 @@ class ProfileConstants {
 
   // ── Resume ────────────────────────────────────────────────────────────────
   static const String resumeUrl =
-      'assets/resume/al%20shahriar%20mohammad%20rafat.pdf';
+      'assets/resume/al_shahriar_mohammad_rafat_resume.pdf';
 
   // ── Profile Image & Logo ──────────────────────────────────────────────────
   static const String profileImagePath = 'assets/images/profile.png';
