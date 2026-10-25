@@ -9,7 +9,7 @@ import '../../contact/screen/contact_section.dart';
 import '../../education/screen/education_section.dart';
 import '../../experience/screen/experience_section.dart';
 import '../../projects/screen/projects_section.dart';
-import '../../services/screen/services_section.dart';
+// import '../../services/screen/services_section.dart';
 import '../../skills/screen/skills_section.dart';
 import '../controller/home_controller.dart';
 import '../widgets/custom_nav_bar.dart';
@@ -88,11 +88,11 @@ class HomeScreen extends StatelessWidget {
                   //   child: const CertificationsSection(),
                   // ),
 
-                  // Services
-                  KeyedSubtree(
-                    key: homeController.servicesKey,
-                    child: const ServicesSection(),
-                  ),
+                  // Services (Commented out for now)
+                  // KeyedSubtree(
+                  //   key: homeController.servicesKey,
+                  //   child: const ServicesSection(),
+                  // ),
 
                   // Blog (Commented out for now)
                   // KeyedSubtree(

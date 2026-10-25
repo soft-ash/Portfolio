@@ -128,7 +128,7 @@ class LocalDataSource {
           company: 'Softvence Omega, Betopia',
           position: 'Jr. Executive Mobile App',
           startDate: 'Jan 2026',
-          isCurrent: true,
+          endDate: 'Aug 2026',
           location: 'Dhaka, Bangladesh',
           description:
               'Developed cross-platform Android & iOS apps using Flutter and Dart. '
